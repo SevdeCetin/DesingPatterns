@@ -1,4 +1,4 @@
-﻿using BaseProject.Models;
+﻿using WebApp.Strategy.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BaseProject
+namespace WebApp.Strategy
 {
     public class Program
     {

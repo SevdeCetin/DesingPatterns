@@ -1,4 +1,4 @@
-﻿using BaseProject.Models;
+﻿using WebApp.Strategy.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BaseProject.Controllers
+namespace WebApp.Strategy.Controllers
 {
     public class HomeController : Controller
     {
