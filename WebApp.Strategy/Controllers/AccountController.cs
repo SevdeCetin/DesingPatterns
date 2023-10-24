@@ -1,4 +1,4 @@
-﻿using WebApp.Strategy.Models;
+﻿using BaseProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApp.Strategy.Controllers
+namespace BaseProject.Controllers
 {
     public class AccountController : Controller
     {

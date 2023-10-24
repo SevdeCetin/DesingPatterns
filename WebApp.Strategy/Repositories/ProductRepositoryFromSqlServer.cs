@@ -1,4 +1,4 @@
-﻿using WebApp.Strategy.Models;
+﻿using BaseProject.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

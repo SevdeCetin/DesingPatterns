@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Strategy.Models;
 
-namespace WebApp.Strategy.Models
+namespace BaseProject.Models
 {
     public class AppIdentityDbContext:IdentityDbContext<AppUser>
     {

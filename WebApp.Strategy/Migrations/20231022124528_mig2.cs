@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebApp.Strategy.Migrations
+namespace BaseProject.Migrations
 {
     public partial class mig2 : Migration
     {
