@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Settings
+
+<form asp-controller="Settings" asp-action="ChangeDatabase">
+    <select asp-for="DatabaseType" asp-items="Html.GetEnumSelectList<EDatabaseType>()"></select>
+    <button type="submit">Güncelle</button>
+</form>
+
