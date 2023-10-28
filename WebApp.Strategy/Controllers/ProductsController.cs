@@ -24,6 +24,8 @@ namespace WebApp.Strategy.Controllers
             _userManager = userManager;
         }
 
+
+
         // GET: Products
         public async Task<IActionResult> Index()
         {

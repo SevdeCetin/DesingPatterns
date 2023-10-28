@@ -1,4 +1,4 @@
-using WebApp.Strategy.Models;
+﻿using WebApp.Strategy.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp.Strategy.Repositories;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApp.Strategy
 {
@@ -26,6 +28,36 @@ namespace WebApp.Strategy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Compile time da değişiklik yapmak istiyorsam bu şekilde..
+            //services.AddScoped<IProductRepository, ProductRepositoryFromSqlServer>();
+            //services.AddScoped<IProductRepository, ProductRepositoryFromMongoDb>();
+
+            //runtime
+            //httpcontext erişmek için;
+            services.AddHttpContextAccessor();
+
+
+            services.AddScoped<IProductRepository>(sp =>
+            {
+                var httpContextAccessor = sp.GetRequiredService<IHttpContextAccessor>();
+
+                var claim = httpContextAccessor.HttpContext.User.Claims.Where(x => x.Type == Settings.claimDatabaseType).FirstOrDefault();
+
+                var context = sp.GetRequiredService<AppIdentityDbContext>();
+
+                if (claim == null) return new ProductRepositoryFromSqlServer(context);
+
+                var databaseType =(EDatabaseType) int.Parse(claim.Value);
+
+                return databaseType switch
+                {
+                    EDatabaseType.SqlServer => new ProductRepositoryFromSqlServer(context),
+                    EDatabaseType.MongoDb => new ProductRepositoryFromMongoDb(Configuration),
+                    _ => throw new NotImplementedException()
+                };
+
+            });
+
             services.AddDbContext<AppIdentityDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
